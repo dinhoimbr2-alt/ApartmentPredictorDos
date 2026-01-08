@@ -28,7 +28,7 @@ Historical notes:
   
   - [postman](https://www.postman.com/) / [Postman docs](https://learning.postman.com/docs/sending-requests/requests/)
   
-  - [Swagger](https://swagger.io/ / https://springdoc.org/)
+  - [Swagger](https://swagger.io/) / [OpenApi](https://springdoc.org/)
 
 - [restaurantManager controller](https://github.com/AlbertProfe/restaurantManager/blob/master/src/main/java/dev/example/restaurantManager/controller/BookingController.java)
 
