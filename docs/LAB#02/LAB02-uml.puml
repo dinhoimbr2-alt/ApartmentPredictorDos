@@ -1,60 +1,103 @@
-
-
 @startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' PERSON HIERARCHY
+' =========================
 
 abstract class Person {
-  +id : String
-  +name : String
-  +email : String
+    id : String
+    fullName : String
+    email : String
+    phone : String
 }
 
 class Owner {
-  +age : int
-  +isActive : boolean
-  +isBusiness : boolean
-  +idLegalOwner : String
-  +registrationDate : LocalDate
-  +qtyDaysAsOwner : int
+    isActive : boolean
+    isBusiness : boolean
+    registrationDate : LocalDate
 }
 
 class Reviewer {
-  +reputationScore : int
+    reputationScore : int
 }
 
 Person <|-- Owner
 Person <|-- Reviewer
 
+
+' =========================
+' PROPERTY HIERARCHY
+' =========================
+
+abstract class ResidentialProperty {
+    id : String
+    price : Long
+    area : Integer
+    bedrooms : Integer
+}
+
 class Apartment {
-  +id : String
-  +price : Long
-  +area : Integer
-  +bedrooms : Integer
+    bathrooms : Integer
+    stories : Integer
 }
 
-class School {
-  +id : String
-  +name : String
-  +type : String
+class House {
+    garageQty : int
+    roofType : String
+    garden : String
 }
 
-class Review {
-  +id : String
-  +comment : String
-  +rating : int
+class Duplex {
+    balcony : String
+    elevator : boolean
 }
+
+ResidentialProperty <|-- Apartment
+ResidentialProperty <|-- House
+ResidentialProperty <|-- Duplex
+
+
+' =========================
+' CONTRACT
+' =========================
 
 class PropertyContract {
-  +id : String
-  +startDate : LocalDate
-  +endDate : LocalDate
+    id : String
+    startDate : LocalDate
+    endDate : LocalDate
 }
 
-Owner "1" -- "*" PropertyContract
-PropertyContract "1" -- "1" Apartment
+Owner "1" -- "0..*" PropertyContract
+PropertyContract "1" -- "1" ResidentialProperty
 
-Apartment "1" -- "*" Review
-Reviewer "1" -- "*" Review
 
-Apartment "*" -- "*" School
+' =========================
+' REVIEW SYSTEM
+' =========================
+
+class Review {
+    id : String
+    comment : String
+    rating : int
+    reviewDate : LocalDate
+}
+
+ResidentialProperty "1" -- "0..*" Review
+Reviewer "1" -- "0..*" Review
+
+
+' =========================
+' SCHOOL RELATION
+' =========================
+
+class School {
+    id : String
+    name : String
+    type : String
+    location : String
+}
+
+ResidentialProperty "0..*" -- "0..*" School
 
 @enduml
