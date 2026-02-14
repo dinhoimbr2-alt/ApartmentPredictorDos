@@ -1,0 +1,60 @@
+
+
+@startuml
+
+abstract class Person {
+  +id : String
+  +name : String
+  +email : String
+}
+
+class Owner {
+  +age : int
+  +isActive : boolean
+  +isBusiness : boolean
+  +idLegalOwner : String
+  +registrationDate : LocalDate
+  +qtyDaysAsOwner : int
+}
+
+class Reviewer {
+  +reputationScore : int
+}
+
+Person <|-- Owner
+Person <|-- Reviewer
+
+class Apartment {
+  +id : String
+  +price : Long
+  +area : Integer
+  +bedrooms : Integer
+}
+
+class School {
+  +id : String
+  +name : String
+  +type : String
+}
+
+class Review {
+  +id : String
+  +comment : String
+  +rating : int
+}
+
+class PropertyContract {
+  +id : String
+  +startDate : LocalDate
+  +endDate : LocalDate
+}
+
+Owner "1" -- "*" PropertyContract
+PropertyContract "1" -- "1" Apartment
+
+Apartment "1" -- "*" Review
+Reviewer "1" -- "*" Review
+
+Apartment "*" -- "*" School
+
+@enduml
