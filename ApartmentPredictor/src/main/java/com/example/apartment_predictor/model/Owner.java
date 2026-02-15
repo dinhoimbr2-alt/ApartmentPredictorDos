@@ -1,5 +1,6 @@
 package com.example.apartment_predictor.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -19,6 +20,7 @@ public class Owner extends Person {
     private int qtyDaysAsOwner;
 
     @OneToMany(mappedBy = "owner")
+    @JsonIgnore
     private List<ResidentialProperty> properties = new ArrayList<>();
 
     public Owner() {
@@ -38,6 +40,9 @@ public class Owner extends Person {
         this.idLegalOwner = "NIF-" + UUID.randomUUID().toString().substring(0, 5);
         this.registrationDate = LocalDate.now();
         this.qtyDaysAsOwner = 0;
+    }
+    public List<ResidentialProperty> getProperties() {
+        return properties;
     }
 
     public int getAge() {
