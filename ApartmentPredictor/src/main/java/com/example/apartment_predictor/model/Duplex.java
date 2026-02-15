@@ -1,22 +1,27 @@
 package com.example.apartment_predictor.model;
 
+import jakarta.persistence.Entity;
 import java.util.UUID;
 
-public class Duplex extends Apartment {
+@Entity
+public class Duplex extends ResidentialProperty {
 
     private String balcony;
     private boolean elevator;
-
 
     public Duplex() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Duplex(String balcony, boolean elevator, String airconditioning, String garden, int garageQty, String roofType) {
+    public Duplex(Long price, Integer area, Integer bedrooms,
+                  String balcony, boolean elevator) {
+
         this.id = UUID.randomUUID().toString();
+        this.price = price;
+        this.area = area;
+        this.bedrooms = bedrooms;
         this.balcony = balcony;
         this.elevator = elevator;
-
     }
 
     @Override
@@ -28,8 +33,6 @@ public class Duplex extends Apartment {
         return basePrice * (1 + (area * 0.04));
     }
 
-
-
     public String getBalcony() {
         return balcony;
     }
@@ -38,7 +41,7 @@ public class Duplex extends Apartment {
         this.balcony = balcony;
     }
 
-    public boolean hasElevator() {
+    public boolean isElevator() {
         return elevator;
     }
 
@@ -46,15 +49,15 @@ public class Duplex extends Apartment {
         this.elevator = elevator;
     }
 
-
-
     @Override
     public String toString() {
         return "Duplex{" +
                 "id='" + id + '\'' +
+                ", price=" + price +
+                ", area=" + area +
+                ", bedrooms=" + bedrooms +
                 ", balcony='" + balcony + '\'' +
-                ", elevator='" + elevator + '\'' +
-
+                ", elevator=" + elevator +
                 '}';
     }
 }

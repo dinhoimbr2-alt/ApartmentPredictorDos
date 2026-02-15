@@ -1,8 +1,10 @@
 package com.example.apartment_predictor.model;
 
+import jakarta.persistence.Entity;
 import java.util.UUID;
 
-public class House extends Apartment {
+@Entity
+public class House extends ResidentialProperty {
 
     private int garageQty;
     private String roofType;
@@ -12,8 +14,13 @@ public class House extends Apartment {
         this.id = UUID.randomUUID().toString();
     }
 
-    public House(int garageQty, String roofType, String garden) {
+    public House(Long price, Integer area, Integer bedrooms,
+                 int garageQty, String roofType, String garden) {
+
         this.id = UUID.randomUUID().toString();
+        this.price = price;
+        this.area = area;
+        this.bedrooms = bedrooms;
         this.garageQty = garageQty;
         this.roofType = roofType;
         this.garden = garden;
@@ -56,6 +63,9 @@ public class House extends Apartment {
     public String toString() {
         return "House{" +
                 "id=" + id +
+                ", price=" + price +
+                ", area=" + area +
+                ", bedrooms=" + bedrooms +
                 ", garageQty=" + garageQty +
                 ", roofType='" + roofType + '\'' +
                 ", garden='" + garden + '\'' +

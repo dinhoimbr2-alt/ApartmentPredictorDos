@@ -2,7 +2,6 @@ package com.example.apartment_predictor.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import com.example.apartment_predictor.model.Apartment;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -12,28 +11,33 @@ public class Review {
 
     @Id
     private String id;
+
     private String title;
     private String content;
     private int rating;
     private LocalDate reviewDate;
+
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "apartment_fk")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Apartment apartment;
 
+    @ManyToOne
+    @JoinColumn(name = "reviewer_fk")
+    private Reviewer reviewer;
 
     public Review() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Review(String title, String content, Integer rating) {
+    public Review(String title, String content, int rating) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.content = content;
         this.rating = rating;
     }
 
-    public Review(String title, String content, Integer rating, LocalDate reviewDate) {
+    public Review(String title, String content, int rating, LocalDate reviewDate) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.content = content;
@@ -41,13 +45,11 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
+    // GETTERS & SETTERS
+
     public String getId() {
         return id;
     }
-
-    /*public void setId(String id) {
-        this.id = id;
-    }*/
 
     public String getTitle() {
         return title;
@@ -65,12 +67,8 @@ public class Review {
         this.content = content;
     }
 
-    public Integer getRating() {
+    public int getRating() {
         return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
     }
 
     public void setRating(int rating) {
@@ -93,12 +91,19 @@ public class Review {
         this.apartment = apartment;
     }
 
+    public Reviewer getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(Reviewer reviewer) {
+        this.reviewer = reviewer;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
                 ", rating=" + rating +
                 '}';
     }

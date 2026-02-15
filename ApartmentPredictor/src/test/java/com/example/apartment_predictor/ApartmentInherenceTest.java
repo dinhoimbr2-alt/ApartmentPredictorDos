@@ -3,6 +3,7 @@ package com.example.apartment_predictor;
 import com.example.apartment_predictor.model.Apartment;
 import com.example.apartment_predictor.model.Duplex;
 import com.example.apartment_predictor.model.House;
+import com.example.apartment_predictor.model.ResidentialProperty;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -39,8 +40,10 @@ public class ApartmentInherenceTest {
         house.setGarageQty(2);
         house.setRoofType("Tile");
 
-        house.setAirconditioning("Yes");
-        house.setArea(100);
+        /***
+         *  house.setAirconditioning("Yes");
+         *         house.setArea(100);
+         */
 
         System.out.println(house);
 
@@ -69,7 +72,8 @@ public class ApartmentInherenceTest {
     @Test
     void testInherenceList() {
 
-        List<Apartment> apartments = new ArrayList<>();
+        List<ResidentialProperty> properties = new ArrayList<>();
+
 
         Apartment apartment = new Apartment();
         //apartment.setId("APT-001-K");
@@ -88,40 +92,46 @@ public class ApartmentInherenceTest {
         System.out.println(apartment);
 
 
-        Apartment house = new House();
+        ResidentialProperty house = new House();
         //house.setId("HOU-001-K");
         ((House) house).setGarden("Yes");
         ((House) house).setGarageQty(2);
         ((House) house).setRoofType("Tile");
 
-        house.setAirconditioning("Yes");
-        house.setArea(100);
+        /**
+         * house.setAirconditioning("Yes");
+         *         house.setArea(100);
+         */
 
         System.out.println(house);
 
-        Apartment duplex = new Duplex();
+        ResidentialProperty duplex = new Duplex();
         //duplex.setId("DUP-001-K");
         ((Duplex) duplex).setBalcony("Yes");
         ((Duplex) duplex).setElevator(true);
 
-        duplex.setBathrooms(2);
-        duplex.setBedrooms(3);
-        duplex.setArea(100);
-        duplex.setStories(2);
-        duplex.setBasement("Yes");
-        duplex.setMainroad("Yes");
-        duplex.setPrefarea("Yes");
-        duplex.setGuestroom("Yes");
-        duplex.setParking(2);
+        /**
+         * duplex.setBathrooms(2);
+         *         duplex.setBedrooms(3);
+         *         duplex.setArea(100);
+         *         duplex.setStories(2);
+         *         duplex.setBasement("Yes");
+         *         duplex.setMainroad("Yes");
+         *         duplex.setPrefarea("Yes");
+         *         duplex.setGuestroom("Yes");
+         *         duplex.setParking(2);
+         */
 
         System.out.println(duplex);
 
-        apartments.add(apartment);
-        apartments.add(house);
-        apartments.add(duplex);
+        properties.add(apartment);
+        properties.add(house);
+        properties.add(duplex);
+
 
         System.out.println("\n=== Apartments in the List ===");
-        apartments.forEach(System.out::println);
+        properties.forEach(System.out::println);
+
 
 
     }
@@ -146,17 +156,19 @@ public class ApartmentInherenceTest {
 
         System.out.println("Calculate price Apartment: " + apartment.calculatePrice());
 
-        House house = new House();
+        ResidentialProperty house = new House();
         //house.setId("HOU-001-K");
-        house.setGarden("Yes");
-        house.setGarageQty(2);
-        house.setRoofType("Tile");
-        house.setBedrooms(3);
-        house.setBathrooms(2);
-        house.setArea(100);
-
-        house.setAirconditioning("Yes");
-        house.setArea(100);
+        /**
+         *   house.setGarden("Yes");
+         *         house.setGarageQty(2);
+         *         house.setRoofType("Tile");
+         *         house.setBedrooms(3);
+         *         house.setBathrooms(2);
+         *         house.setArea(100);
+         *
+         *         house.setAirconditioning("Yes");
+         *         house.setArea(100);
+         */
 
         System.out.println(house);
 

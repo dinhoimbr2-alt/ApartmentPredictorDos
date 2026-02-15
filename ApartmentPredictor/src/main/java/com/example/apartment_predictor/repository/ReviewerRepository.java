@@ -1,4 +1,7 @@
 package com.example.apartment_predictor.repository;
 
-public interface ReviewerRepository {
+import com.example.apartment_predictor.model.Reviewer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewerRepository extends JpaRepository<Reviewer, String> {
 }

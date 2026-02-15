@@ -6,13 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Apartment {
+public class Apartment extends ResidentialProperty {
 
-    @Id
-    protected String id;
-    private Long price;
-    protected Integer area;
-    protected Integer bedrooms;
     private Integer bathrooms;
     private Integer stories;
     private String mainroad;
@@ -24,16 +19,17 @@ public class Apartment {
     private String prefarea;
     private String furnishingstatus;
 
-    @OneToMany(mappedBy = "apartment",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "APARTMENT_SCHOOL_JOIN_TABLE",
             joinColumns = @JoinColumn(name = "apartment_id"),
             inverseJoinColumns = @JoinColumn(name = "school_id")
     )
     private List<School> schools = new ArrayList<>();
+
 
     // Default constructor
     public Apartment() {
